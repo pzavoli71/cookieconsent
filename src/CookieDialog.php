@@ -100,9 +100,6 @@ class CookieDialog extends Widget
      */
     public function init()
     {
-        if (!isset($this->ajaxConversion)) {
-            $this->ajaxConversion = $this->_module->ajaxConversion;
-        }
         parent::init();
     }
 
@@ -112,8 +109,8 @@ class CookieDialog extends Widget
     public function run()
     {
         $this->registerAssets();
-        echo "dialog";
-        parent::run();
+        return $this->getView()->render("@vendor/pzavoli71/cookieconsent/src/widget/CookieDialogWidget");
+        //parent::run();
     }
 
     /**

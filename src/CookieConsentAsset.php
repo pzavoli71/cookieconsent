@@ -9,7 +9,6 @@
 
 namespace pzavoli71\cookieconsent;
 
-use kartik\base\AssetBundle;
 
 /**
  * Asset bundle for the [[DateControl]] widget.
@@ -17,16 +16,22 @@ use kartik\base\AssetBundle;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class DateControlAsset extends AssetBundle
+class CookieConsentAsset extends \yii\web\AssetBundle
 {
+    public $sourcePath = '@vendor/pzavoli71/cookieconsent/src/assets';
+    public $depends = ['yii\web\JqueryAsset'];
+    
     /**
      * @inheritdoc
      */
     public function init()
     {
-        $this->depends = array_merge($this->depends, ['kartik\datecontrol\DateFormatterAsset']);
-        $this->setSourcePath(__DIR__ . '/assets');
-        $this->setupAssets('js', ['js/datecontrol']);
-        parent::init();
+        if (YII_DEBUG) {
+            $this->js[] = 'js/cookiecontrol.js';
+            //$this->css[] = 'redactor.css';
+        } else {
+            //$this->js[] = 'redactor.js';
+            //$this->css[] = 'redactor.css';
+        }
     }
 }
