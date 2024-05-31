@@ -9,6 +9,7 @@
 
 namespace pzavoli71\cookieconsent;
 
+use \yii\web\View;
 
 /**
  * Asset bundle for the [[DateControl]] widget.
@@ -28,6 +29,10 @@ class CookieConsentAsset extends \yii\web\AssetBundle
     {
         if (YII_DEBUG) {
             $this->js[] = 'js/cookiecontrol.js';
+            /*$this->js(
+                "$('.consent').dialog()",
+                View::POS_READY,"scriptconsent"
+            );     */       
             //$this->css[] = 'redactor.css';
         } else {
             //$this->js[] = 'redactor.js';

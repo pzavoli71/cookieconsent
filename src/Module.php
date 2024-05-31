@@ -23,6 +23,9 @@ use yii\helpers\FormatConverter;
  */
 class Module extends YiiModule
 {
+    public $TextConsent = [];
+    public $LinkPolicy = '';
+
     /**
      * @var string current module name.
      */
@@ -33,11 +36,25 @@ class Module extends YiiModule
      */
     public function init()
     {
-        $this->initSettings();
         parent::init();
+        $this->initSettings();
     }
 
-
+    /**
+     * Initializes module settings.
+     */
+    public function initSettings()
+    {
+        $varparams = $GLOBALS['config'];
+        //$this->TextConsent = $varparams['modules']['cookieconsent']['TextConsent'];
+        //$this->LinkPolicy = $varparams['modules']['cookieconsent']['linkpolicy'];
+    }    
+    public static function addCookieConsent() {
+        $cookies = Yii::$app->request->cookies;
+        if (! isset($_COOKIE['cookieconsent'])) {
+            echo( CookieDialog::widget());
+        }
+    }
     /**
      * Parse and return format understood by PHP DateTime.
      *
