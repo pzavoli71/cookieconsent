@@ -67,6 +67,10 @@
             background-color:#434343;
             font-size:110%;
         }
+        .btn-check.notallowed:checked + .btn {
+            background-color:#a70f0f;
+            font-size:110%;
+        }
     </style>
     <?php 
             $this->registerJs(
@@ -100,7 +104,7 @@
         </div>
         <div class="consentchoice"><div>Analytics cookies</div>
             <div>
-              <input type="radio" class="btn-check" name="radio-analytics" id="radio-1-1" checked>
+              <input type="radio" class="btn-check notallowed" name="radio-analytics" id="radio-1-1" checked>
               <label class="btn btn-secondary" for="radio-1-1">Not allowed</label>
               <input type="radio" class="btn-check" name="radio-analytics" id="radio-1-2">
               <label class="btn btn-secondary" for="radio-1-2">Allowed</label>
@@ -108,7 +112,7 @@
         </div>
         <div class="consentchoice"><div>Advertising cookies</div>
             <div>
-              <input type="radio" class="btn-check" name="radio-advertising" id="radio-2-1" checked>
+              <input type="radio" class="btn-check notallowed" name="radio-advertising" id="radio-2-1" checked>
               <label class="btn btn-secondary" for="radio-2-1">Not allowed</label>
               <input type="radio" class="btn-check" name="radio-advertising" id="radio-2-2">
               <label class="btn btn-secondary" for="radio-2-2">Allowed</label>
@@ -116,7 +120,7 @@
         </div>
         <div class="consentchoice"><div>Personalization cookies</div>
             <div>
-              <input type="radio" class="btn-check" name="radio-personalization" id="radio-3-1" checked>
+              <input type="radio" class="btn-check notallowed" name="radio-personalization" id="radio-3-1" checked>
               <label class="btn btn-secondary" for="radio-3-1">Not allowed</label>
               <input type="radio" class="btn-check" name="radio-personalization" id="radio-3-2">
               <label class="btn btn-secondary" for="radio-3-2">Allowed</label>
@@ -127,6 +131,6 @@
         <div style="display:flex; flex-direction: row;flex-wrap: wrap;justify-content: space-evenly;  ">
         <input type="button" name="sceglitutto" value="Scegli Tutto"/>
         <input type="button" name="rimuovitutto" value="Rimuovi Tutto"/>
-        <input type="button" name="conferma" value="Conferma" onclick="setCookie('cookieconsent','ok',10);$('.consent').dialog('close');"/>
+        <input type="button" name="conferma" value="Conferma" onclick="confirmCookies(); $('.consent').dialog('close');"/>
         </div>
     </div>

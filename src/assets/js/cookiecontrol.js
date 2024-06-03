@@ -31,3 +31,28 @@ function checkCookie() {
     }
   }
 }
+
+function createStringCookies(dati) {
+    if ( $('div.consent input#radio-1-1').is('checked'))
+        dati.analytics = true;
+    else
+        dati.analytics = false;
+
+    if ( $('div.consent input#radio-2-1').is('checked'))
+        dati.advertising = true;
+    else
+        dati.advertising = false;
+
+    if ( $('div.consent input#radio-3-1').is('checked'))
+        dati.personalization = true;
+    else
+        dati.personalization = false;
+    return dati;
+}
+
+function confirmCookies() {
+    dati = {};
+    createStringCookies(dati);
+    stringa = JSON.stringify(dati);
+    setCookie('cookieconsent', stringa, 365);
+}
