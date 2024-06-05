@@ -50,9 +50,22 @@ function createStringCookies(dati) {
     return dati;
 }
 
-function confirmCookies() {
+function confirmCookies(uuid) {
     dati = {};
     createStringCookies(dati);
+    dati.uuid = uuid;
+    debugger;
     stringa = JSON.stringify(dati);
     setCookie('cookieconsent', stringa, 365);
+    $.ajax({
+      url: "index.php?r=cookie/save&IdViaggio=1",
+      data: dati,
+      beforeSend: function ( xhr ) {
+        xhr.overrideMimeType("text/plain; charset=x-user-defined");
+      }
+    }).done(function ( data ) {
+      if( console && console.log ) {
+        console.log("Sample of data:", data.slice(0, 100));
+      }
+    });
 }

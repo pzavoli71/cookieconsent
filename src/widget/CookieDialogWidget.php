@@ -131,6 +131,6 @@
         <div style="display:flex; flex-direction: row;flex-wrap: wrap;justify-content: space-evenly;  ">
         <input type="button" name="sceglitutto" value="Scegli Tutto"/>
         <input type="button" name="rimuovitutto" value="Rimuovi Tutto"/>
-        <input type="button" name="conferma" value="Conferma" onclick="confirmCookies(); $('.consent').dialog('close');"/>
+        <input type="button" name="conferma" value="Conferma" onclick="confirmCookies('<?= $uuid?>'); $('.consent').dialog('close');"/>
         </div>
     </div>
