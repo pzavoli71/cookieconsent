@@ -25,7 +25,7 @@
   },
   "autoload": {
     "psr-4": {
-      "pzavoli71\\cookieconsent\\": "src"
+      "pzavoli71\\cookieconsent\\": "/src"
     }
   },
   "extra": {
