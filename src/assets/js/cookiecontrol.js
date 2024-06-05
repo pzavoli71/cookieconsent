@@ -57,15 +57,31 @@ function confirmCookies(uuid) {
     debugger;
     stringa = JSON.stringify(dati);
     setCookie('cookieconsent', stringa, 365);
+    self = this;
     $.ajax({
-      url: "index.php?r=cookie/save&IdViaggio=1",
-      data: dati,
-      beforeSend: function ( xhr ) {
-        xhr.overrideMimeType("text/plain; charset=x-user-defined");
-      }
-    }).done(function ( data ) {
-      if( console && console.log ) {
-        console.log("Sample of data:", data.slice(0, 100));
-      }
-    });
+        url: "index.php?r=cookieconsent/cookie/save&IdViaggio=1",
+        data: dati,
+        type: "post",
+        dataType: "json",
+        async: true,
+        beforeSend: function (jqXHR) {
+            //self.raise('beforechange', [$el.val(), $idSave.val(), jqXHR]);
+        },
+        success: function (data, textStatus, jqXHR) {
+            var ev = 'changeerror';
+            if (data.status === "success") {
+               // $idSave.val(data.output).trigger('change');
+                ev = 'changesuccess';
+            }
+            //self.raise(ev, [$el.val(), $idSave.val(), data, textStatus, jqXHR]);
+        },
+        complete: function () {
+            self.isChanged = false;
+            //self.raise('changecomplete', [$el.val(), $idSave.val()]);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            self.isChanged = false;
+            //self.raise('changeajaxerror', [$el.val(), $idSave.val(), jqXHR, textStatus, errorThrown]);
+        }
+    });                                       
 }

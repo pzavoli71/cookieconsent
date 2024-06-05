@@ -24,6 +24,7 @@ use yii\helpers\FormatConverter;
 class Module extends YiiModule
 {
     public $controllerNamespace = 'pzavoli71\cookieconsent\controllers';
+    public $saveAction = ['cookieconsent/cookie/save'];
     
     public $TextConsent = [];
     public $LinkPolicy = '';
