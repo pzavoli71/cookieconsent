@@ -28,9 +28,23 @@ class CookieController extends Controller
         Yii::$app->response->format = Response::FORMAT_JSON;
         $req = Yii::$app->request;
         $post = $req->post();
-        if (!isset($post['displayDate'])) {
-            return ['status' => 'error', 'output' => 'No display date found'];
+        $cookie = new \common\models\abilitazione\CookieConsent();
+        $cookie->IP = $req->getUserIP();
+        $cookie->stringa = $post['stringa'];
+        $cookie->uuid = $post['uuid'];
+        
+        if (!$cookie->save()) {
+            return ['status' => 'error', 'output' => 'Errore in salvataggio cookie'];        
         }
-        return ['status' => 'success', 'output' => $value];
+        $cookies = Yii::$app->response->cookies;
+        $cookies->add(new \yii\web\Cookie([
+            'name' => 'cookieconsent',
+            'value' => stringa,
+            'httpOnly' => false,
+        ]));
+        /*if (!isset($post['displayDate'])) {
+            return ['status' => 'error', 'output' => 'No display date found'];
+        }*/
+        return ['status' => 'success', 'output' => 'ok'];
     }
 }
