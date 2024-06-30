@@ -20,15 +20,17 @@ function getCookie(cname) {
   return "";
 }
 
-function checkCookie() {
-  let user = getCookie("username");
+function checkCookie(nome) {
+  let user = getCookie(nome);
   if (user != "") {
-    alert("Welcome again " + user);
+      return true;
+    //alert("Welcome again " + user);
   } else {
-    user = prompt("Please enter your name:", "");
-    if (user != "" && user != null) {
+      return false;
+    //user = prompt("Please enter your name:", "");
+    /*if (user != "" && user != null) {
       setCookie("username", user, 365);
-    }
+    }*/
   }
 }
 
@@ -56,7 +58,8 @@ function confirmCookies(uuid) {
     dati.uuid = uuid;
     debugger;
     stringa = JSON.stringify(dati);
-    setCookie('cookieconsent', stringa, 365);
+    dati.stringa = stringa;
+    //setCookie('cookieconsent', stringa, 365);
     self = this;
     $.ajax({
         url: "index.php?r=cookieconsent/cookie/save&IdViaggio=1",
@@ -71,7 +74,10 @@ function confirmCookies(uuid) {
             var ev = 'changeerror';
             if (data.status === "success") {
                // $idSave.val(data.output).trigger('change');
-                ev = 'changesuccess';
+               if (checkCookie('cookieconsent')) {
+                   $('.consent').dialog('close');
+               }
+               ev = 'changesuccess';
             }
             //self.raise(ev, [$el.val(), $idSave.val(), data, textStatus, jqXHR]);
         },
