@@ -29,6 +29,26 @@ Nel layout delle pagine visualizzate deve essere impostato il comando per render
      ?&gt;
 </code>
 <br/><br/>
+Nel css dell'applicativo inserire la seguente regola:<br/>
+<code>
+.cookieconsent {
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    min-width: 100px;
+    border: 1px solid #b7b7b7;
+    background-color: aliceblue;
+    padding: 9px;
+    border-radius: 40px;
+    text-align: center;
+    display: block;
+}
+.cookieconsent:hover {
+    background-color:#DDDDDD;
+    transition: all 0.2s ease 0s;
+}
+</code>
+<br/><br/>
 La tabella dove verranno salvate le impostazioni dell'utente deve avere il seguente formato:<br/>
 <code>
 CREATE TABLE `cookieconsent` (
