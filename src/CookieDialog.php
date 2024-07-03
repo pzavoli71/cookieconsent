@@ -22,6 +22,9 @@ class CookieDialog extends Widget
 {
   
     public $uuid;
+
+    public $caricadaajax;
+    
     /**
      * @var string any custom widget class to use. Will only be used if [[autoWidget]] is set to `false`.
      */
@@ -110,7 +113,11 @@ class CookieDialog extends Widget
     public function run()
     {
         $this->registerAssets();
-        return $this->getView()->render("@vendor/pzavoli71/cookieconsent/src/widget/CookieDialogWidget",['uuid'=>$this->uuid]);
+        if ( isset($this->caricadaajax)) {
+            return $this->getView()->renderAjax("@vendor/pzavoli71/cookieconsent/src/widget/CookieDialogWidget",['uuid'=>$this->uuid,'caricadaajax'=>'true']);            
+        } else {
+            return $this->getView()->render("@vendor/pzavoli71/cookieconsent/src/widget/CookieDialogWidget",['uuid'=>$this->uuid]);
+        }
         //parent::run();
     }
 

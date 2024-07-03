@@ -28,6 +28,9 @@ class Module extends YiiModule
     
     public $TextConsent = [];
     public $LinkPolicy = '';
+    public $Analytics = true;
+    public $Advertising = true;
+    public $Personalization = true;
 
     /**
      * @var string current module name.
@@ -59,11 +62,20 @@ class Module extends YiiModule
         if (\Yii::$app->crawlerdetect->isCrawler()) {
             return;
         }
-        if (! isset($_COOKIE['cookieconsent'])) {
+        if (! $cookies->has('cookieconsent')) {
             // Creo il UUID da associare a questo contesto
             $uuid = Module::getGUID();
             echo( CookieDialog::widget(['uuid'=>$uuid]));
         }
+        
+        // Aggiungo il link a fondo pagina per aggiornare i cookie services    
+        echo("<script type='text/javascript'>\n");
+        echo("function visualizzaPreferenze() {\n");
+        echo("dati = {};\n");
+        echo("$.post('index.php?r=cookieconsent/cookie/visualizza', dati, function(html) {\n\$('body').append(html) })\n");
+        echo("}\n");
+        echo("</script>\n");
+        echo("<div class='cookieconsent'><a href='javascript:void(0)' onclick='visualizzaPreferenze()'>cookies</a></div>");
     }
     
     static function getGUID(){

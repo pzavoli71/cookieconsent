@@ -5,45 +5,46 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
+function removeCookie(cname) {
+    setCookie(cname,"",-1);
+}
+
 function getCookie(cname) {
   let name = cname + "=";
   let ca = document.cookie.split(';');
   for(let i = 0; i < ca.length; i++) {
     let c = ca[i];
-    while (c.charAt(0) == ' ') {
+    while (c.charAt(0) === ' ') {
       c = c.substring(1);
     }
-    if (c.indexOf(name) == 0) {
+    if (c.indexOf(name) === 0) {
       return c.substring(name.length, c.length);
     }
   }
   return "";
 }
 
-function checkCookie() {
-  let user = getCookie("username");
-  if (user != "") {
-    alert("Welcome again " + user);
+function checkCookie(nome) {
+  let user = getCookie(nome);
+  if (user !==  "") {
+      return true;
   } else {
-    user = prompt("Please enter your name:", "");
-    if (user != "" && user != null) {
-      setCookie("username", user, 365);
-    }
+      return false;
   }
 }
 
 function createStringCookies(dati) {
-    if ( $('div.consent input#radio-1-1').is('checked'))
+    if ( !$('div.consent input#radio-1-1').is(':checked'))
         dati.analytics = true;
     else
         dati.analytics = false;
 
-    if ( $('div.consent input#radio-2-1').is('checked'))
+    if ( !$('div.consent input#radio-2-1').is(':checked'))
         dati.advertising = true;
     else
         dati.advertising = false;
 
-    if ( $('div.consent input#radio-3-1').is('checked'))
+    if ( !$('div.consent input#radio-3-1').is(':checked'))
         dati.personalization = true;
     else
         dati.personalization = false;
@@ -54,34 +55,30 @@ function confirmCookies(uuid) {
     dati = {};
     createStringCookies(dati);
     dati.uuid = uuid;
-    debugger;
     stringa = JSON.stringify(dati);
-    setCookie('cookieconsent', stringa, 365);
+    dati.stringa = stringa;
     self = this;
     $.ajax({
-        url: "index.php?r=cookieconsent/cookie/save&IdViaggio=1",
+        url: "index.php?r=cookieconsent/cookie/save",
         data: dati,
         type: "post",
         dataType: "json",
         async: true,
         beforeSend: function (jqXHR) {
-            //self.raise('beforechange', [$el.val(), $idSave.val(), jqXHR]);
         },
         success: function (data, textStatus, jqXHR) {
-            var ev = 'changeerror';
             if (data.status === "success") {
-               // $idSave.val(data.output).trigger('change');
-                ev = 'changesuccess';
+               if (checkCookie('cookieconsent')) {
+                   //$('.consent').dialog('close');
+                   $('.consent').dialog('destroy').remove();
+               }
             }
-            //self.raise(ev, [$el.val(), $idSave.val(), data, textStatus, jqXHR]);
         },
         complete: function () {
             self.isChanged = false;
-            //self.raise('changecomplete', [$el.val(), $idSave.val()]);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             self.isChanged = false;
-            //self.raise('changeajaxerror', [$el.val(), $idSave.val(), jqXHR, textStatus, errorThrown]);
         }
     });                                       
 }
