@@ -21,5 +21,17 @@ You can allow all cookies, select them individually or decline them all.",
 La voce <b>Linkpolicy</b> deve puntare alla pagina con il contenuto delle privacy policy.
 Le voci <b>Analytics</b>, <b>Advertising</b>, <b>Personalization</b> devono essere configurate per far comparire il relativo checkbox nella pagina di scelta dei cookies.
 Il campo <b>TextConsent</b> è il contenuto di testo che compare all'utente quando visualizza la maschera dei cookies.
-
+<br/>
+La tabella dove verranno salvate le impostazioni dell'utente deve avere il seguente formato:<br/>
+<code>
+CREATE TABLE `cookieconsent` (
+  `idcookie` int NOT NULL AUTO_INCREMENT,
+  `IP` varchar(40) NOT NULL,
+  `uuid` varchar(60) DEFAULT NULL,
+  `stringa` varchar(500) DEFAULT NULL,
+  `ultagg` datetime DEFAULT CURRENT_TIMESTAMP,
+  `utente` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idcookie`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+</code>
 **pzavoli71-cookieconsent** is released under the BSD 3-Clause License. See the bundled `LICENSE.md` for details.
