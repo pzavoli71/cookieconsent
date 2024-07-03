@@ -21,7 +21,7 @@ You can allow all cookies, select them individually or decline them all.",
 La voce <b>Linkpolicy</b> deve puntare alla pagina con il contenuto delle privacy policy.
 Le voci <b>Analytics</b>, <b>Advertising</b>, <b>Personalization</b> devono essere configurate per far comparire il relativo checkbox nella pagina di scelta dei cookies.
 Il campo <b>TextConsent</b> è il contenuto di testo che compare all'utente quando visualizza la maschera dei cookies.
-<br/>
+<br/><br/>
 La tabella dove verranno salvate le impostazioni dell'utente deve avere il seguente formato:<br/>
 <code>
 CREATE TABLE `cookieconsent` (
