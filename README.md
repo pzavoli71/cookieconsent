@@ -34,4 +34,5 @@ CREATE TABLE `cookieconsent` (
   PRIMARY KEY (`idcookie`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 </code>
+<br/><br/>
 **pzavoli71-cookieconsent** is released under the BSD 3-Clause License. See the bundled `LICENSE.md` for details.
