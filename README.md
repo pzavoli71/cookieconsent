@@ -3,7 +3,7 @@
     <hr>
 </h1>
 Per consentire il funzionamento di questo widget è necessario predisporre una voce nell'area modules del main.php
-all'interno dello spazio "frontend". La voce deve essere del tipo:
+all'interno dello spazio "frontend". La voce deve essere del tipo:<br/>
     <code>'modules' => [
        'cookieconsent' => [
             'class' => '\pzavoli71\cookieconsent\Module',            
