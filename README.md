@@ -22,6 +22,13 @@ La voce <b>Linkpolicy</b> deve puntare alla pagina con il contenuto delle privac
 Le voci <b>Analytics</b>, <b>Advertising</b>, <b>Personalization</b> devono essere configurate per far comparire il relativo checkbox nella pagina di scelta dei cookies.
 Il campo <b>TextConsent</b> è il contenuto di testo che compare all'utente quando visualizza la maschera dei cookies.
 <br/><br/>
+Nel layout delle pagine visualizzate deve essere impostato il comando per rendere visibile o invisibile il dialog con la scelta dei cookies:<br/>
+<code>
+    <?php 
+        \pzavoli71\cookieconsent\Module::addCookieConsent();
+     ?>
+</code>
+<br/><br/>
 La tabella dove verranno salvate le impostazioni dell'utente deve avere il seguente formato:<br/>
 <code>
 CREATE TABLE `cookieconsent` (
