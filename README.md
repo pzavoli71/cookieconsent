@@ -24,9 +24,9 @@ Il campo <b>TextConsent</b> è il contenuto di testo che compare all'utente quan
 <br/><br/>
 Nel layout delle pagine visualizzate deve essere impostato il comando per rendere visibile o invisibile il dialog con la scelta dei cookies:<br/>
 <code>
-    <?php 
+    &lt;?php 
         \pzavoli71\cookieconsent\Module::addCookieConsent();
-     ?>
+     ?&gt;
 </code>
 <br/><br/>
 La tabella dove verranno salvate le impostazioni dell'utente deve avere il seguente formato:<br/>
