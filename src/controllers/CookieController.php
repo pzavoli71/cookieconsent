@@ -41,6 +41,7 @@ class CookieController extends Controller
             'name' => 'cookieconsent',
             'value' => $cookie->stringa,
             'httpOnly' => false,
+            'expire' => time()+60*60*24*365,
         ]));
         return ['status' => 'success', 'output' => 'ok'];
     }
